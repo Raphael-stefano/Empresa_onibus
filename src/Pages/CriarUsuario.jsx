@@ -1,8 +1,11 @@
 import '../App.css';
 import {useState, useEffect} from 'react'
 import {obterNomesMunicipios} from '../services/listaCidades'
+import { UsarContextoGeral } from '../contexto/contexto';
 
 export default function CriarUsuario(){
+
+    const {cidade, definirCidade, listaCidades, setListaCidades} = UsarContextoGeral()
 
     // Função para lidar com o envio do formulário
     const handleSubmit = (e) => {
@@ -23,11 +26,8 @@ export default function CriarUsuario(){
         console.log(jsonDadosFormulario);
     };
 
-    const [cidade, setCidade] = useState('Selecionar cidade')
-    function definirCidade(cidade){
-        setCidade(cidade)
-    }
-    const [listaCidades, setListaCidades] = useState([])
+    
+    //const [listaCidades, setListaCidades] = useState([]) movido para a página contexto
     const [renderLista, setRenderLista] = useState([])
     const [listaCidadesVisibility, setlistaCidadesVisibility] = useState('cidade-select-list-hidden')
     function mostrarLista(){
